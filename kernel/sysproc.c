@@ -95,3 +95,14 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+uint64
+sys_trace(void)
+{
+  struct proc *p = myproc();
+  int num;
+  if(argint(0, &num) < 0)
+    return -1;
+  p->is_trace = num;
+  return 0;
+}
